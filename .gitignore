@@ -1,0 +1,15 @@
+node_modules/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+playwright/.auth/
+*.log
+.DS_Store
+.env
+.env.local
+
+# local agent config
+.claude/
+CLAUDE.md
+AGENTS.md

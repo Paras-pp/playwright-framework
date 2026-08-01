@@ -1,0 +1,31 @@
+{
+  "name": "flakeboard-e2e",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Playwright + TypeScript end-to-end framework for Flakeboard. Page objects, typed custom fixtures, network interception and API tests.",
+  "license": "MIT",
+  "type": "commonjs",
+  "scripts": {
+    "test": "playwright test",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
+    "test:api": "playwright test --project=api",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --project=chromium --headed",
+    "test:debug": "PWDEBUG=1 playwright test --project=chromium",
+    "test:list": "playwright test --list",
+    "test:update-snapshots": "playwright test --update-snapshots",
+    "report": "playwright show-report",
+    "trace": "playwright show-trace",
+    "merge-reports": "playwright merge-reports --reporter=html ./blob-report",
+    "typecheck": "tsc --noEmit",
+    "lint:no-hard-waits": "! grep -rnE '(waitForTimeout|setTimeout)[[:space:]]*\\(' tests pages fixtures utils --include='*.ts'",
+    "install:browsers": "playwright install --with-deps"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.1.2",
+    "typescript": "^7.0.2"
+  }
+}

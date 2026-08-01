@@ -88,9 +88,17 @@ jobs:
             playwright-framework/package-lock.json
             flakeboard/package-lock.json
 
+      # `npm install`, not `npm ci`, for the app only.
+      #
+      # Vite 8 minifies CSS with lightningcss, which ships a per-platform native binary
+      # as an optional dependency. A lockfile resolved on darwin-arm64 does not carry the
+      # linux-x64 entry, so `npm ci` — which installs strictly from the lockfile — leaves
+      # it out and the build dies on "Cannot find module lightningcss.linux-x64-gnu.node".
+      # `npm install` re-resolves optional deps for the host platform. The suite itself
+      # still uses `npm ci`, because reproducibility matters most for the tests.
       - name: Install app dependencies
         working-directory: flakeboard
-        run: npm ci
+        run: npm install --no-audit --no-fund
 
       - name: Install suite dependencies
         working-directory: playwright-framework
